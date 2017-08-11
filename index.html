@@ -1,0 +1,62 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>Easy Custom File Input - Example</title>
+        <meta name="description" content="An example of how to easily create a custom file input with a little HTML, CSS and JS.">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <style>
+          label {
+            border: 1px solid black;
+            padding: 5px;
+          }
+          input[type="file"] {
+            display: none;
+          }
+          input[type="submit"] {
+            background: DARKTURQUOISE;
+            border: 1px solid black;
+            border-radius: 0;
+            font-size: 14px;
+            padding: 5px;
+            text-transform: uppercase;
+          }
+          input:active, input:focus {
+            position: relative;
+            top: 2px;
+          }
+        </style>
+    </head>
+    <body>
+        <h1>~*~SUPER-EASY~*~ Custom File Upload Buttons 4 u</h1>
+        <p>Create any custom file upload button you like using just a little CSS and JS.</p>
+        <p>Check out the code <a href="https://github.com/louiseswift/custom_file_input">on GitHub</a> (it won't take long)!</p>
+
+        <form>
+          <label for="important_id_here">Click to choose files (0)</label>
+          <input id="important_id_here" multiple="multiple" type="file">
+          <input type="submit" value="Upload files">
+          <p class="result-msg"></p>
+        </form>
+
+        <script>
+          // custom behaviour for our form file upload buttons
+          document.querySelector('input[type="file"]').onchange = function() {
+            // see which file upload input has triggered the change event
+            var fileInput = this;
+
+            // we can then see how many files the user selected
+            var fileCount = fileInput.files.length;
+
+            // find the label element that we might want to edit
+            var label = document.querySelector('label[for="' + fileInput.id + '"]');
+
+            // this label starts out with '(0)' at the end, so we can remove
+            // that and replace it with the new file count e.g. '(1)'
+            var newLabelText = label.innerText.split('(')[0] + '(' + fileCount + ')';
+            label.innerText = newLabelText;
+          }
+        </script>
+    </body>
+</html>
